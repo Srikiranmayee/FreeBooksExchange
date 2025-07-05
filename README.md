@@ -6,4 +6,4 @@ A website for free books exchange between students-
 Technoligies
     Python
     Node Js
-    MySQL Database
+    MySQL Database - mysql-9.3.0-winx64
