@@ -1,3 +1,4 @@
+
 -- Create the database
 CREATE DATABASE IF NOT EXISTS FreeExchangeBooks;
 USE FreeExchangeBooks;
@@ -26,14 +27,14 @@ CREATE TABLE usercredentials (
 -- 3. Table: books (picture stored as binary data)
 CREATE TABLE books (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL, -- Owner (donor) of the book
+    user_id INT , -- Owner (donor) of the book
     picture LONGBLOB, -- Binary image data
     book_name VARCHAR(255) NOT NULL,
     authors VARCHAR(255),
     genre VARCHAR(100),
-    language VARCHAR(50),
-    condition ENUM('new', 'like new', 'good', 'fair', 'poor') DEFAULT 'good',
-    description TEXT,
+    languages VARCHAR(50),
+    conditions ENUM('new', 'like new', 'good', 'fair', 'poor') DEFAULT 'good',
+    descriptions TEXT,
     date_available DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL
@@ -42,7 +43,7 @@ CREATE TABLE books (
 -- 4. Table: donors
 CREATE TABLE donors (
     donor_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
+    user_id INT,
     phone_number VARCHAR(20),
     address TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -52,7 +53,7 @@ CREATE TABLE donors (
 -- 5. Table: receivers
 CREATE TABLE receivers (
     receiver_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
+    user_id INT ,
     phone_number VARCHAR(20),
     address TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
