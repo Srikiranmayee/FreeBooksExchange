@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Free Book Exchange India</title>
+  <meta name="google-signin-client_id" content="165796094865-tfo6hdf904mmma0a4ruh8f0vq5fr77jg.apps.googleusercontent.com">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>📚 Free Book Exchange India</h1>
+
+  <div id="login-area">
+    <div id="g_id_onload"
+         data-client_id="165796094865-tfo6hdf904mmma0a4ruh8f0vq5fr77jg.apps.googleusercontent.com"
+         data-callback="onSignIn"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
+  </div>
+
+  <div id="app" style="display: none;">
+    <p>Welcome, <span id="user-name"></span> | <button onclick="signOut()">Sign Out</button></p>
+
+    <div id="role-select">
+      <p>Select your role: 
+        <button onclick="setRole('donor')">Donor</button>
+        <button onclick="setRole('collector')">Collector</button>
+      </p>
+    </div>
+
+    <div id="donor-panel" style="display: none;">
+      <h3>Upload a Book</h3>
+      <input type="text" id="book-title" placeholder="Book Title" />
+      <input type="text" id="book-author" placeholder="Author" />
+      <input type="text" id="book-address" placeholder="Pickup Address" />
+      <button onclick="uploadBook()">Upload</button>
+    </div>
+
+    <div id="search-panel">
+      <h3>Search Books</h3>
+      <input type="text" id="search-box" onkeyup="searchBooks()" placeholder="Search by title or author" />
+      <ul id="book-list"></ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
