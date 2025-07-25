@@ -85,5 +85,5 @@ function searchBooks() {
 
 function requestBook(index) {
   const book = books[index];
-  alert(`Request sent to donor: ${book.donor}\nPlease collect from: ${book.address}`);
+  alert(`✅ Request sent to ${book.donor}\n📍 Collect from: ${book.address}`);
 }
