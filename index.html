@@ -1,50 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Book Exchange India</title>
   <meta name="google-signin-client_id" content="165796094865-tfo6hdf904mmma0a4ruh8f0vq5fr77jg.apps.googleusercontent.com">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>📚 Free Book Exchange India</h1>
+<body class="bg-gray-100 text-gray-800">
+  <div class="max-w-3xl mx-auto mt-10 px-4">
+    <h1 class="text-3xl font-bold mb-6 text-center">📚 Free Book Exchange India</h1>
 
-  <div id="login-area">
-    <div id="g_id_onload"
-         data-client_id="165796094865-tfo6hdf904mmma0a4ruh8f0vq5fr77jg.apps.googleusercontent.com"
-         data-callback="onSignIn"
-         data-auto_prompt="false">
+    <div id="login-area" class="flex justify-center">
+      <div id="g_id_onload"
+           data-client_id="165796094865-tfo6hdf904mmma0a4ruh8f0vq5fr77jg.apps.googleusercontent.com"
+           data-callback="onSignIn"
+           data-auto_prompt="false"></div>
+      <div class="g_id_signin" data-type="standard"></div>
     </div>
-    <div class="g_id_signin" data-type="standard"></div>
+
+    <div id="app" class="hidden">
+      <div class="mb-4 flex justify-between items-center">
+        <p>👋 Welcome, <span id="user-name" class="font-semibold"></span></p>
+        <button onclick="signOut()" class="text-red-500 underline">Sign Out</button>
+      </div>
+
+      <div class="mb-6 flex space-x-4">
+        <button onclick="switchRole('donor')" id="donor-tab" class="tab-btn">Donor</button>
+        <button onclick="switchRole('collector')" id="collector-tab" class="tab-btn">Collector</button>
+      </div>
+
+      <div id="donor-panel" class="role-panel hidden">
+        <h2 class="text-xl font-bold mb-2">📤 Upload a Book</h2>
+        <div class="space-y-2">
+          <input type="text" id="book-title" class="input" placeholder="Book Title" />
+          <input type="text" id="book-author" class="input" placeholder="Author" />
+          <input type="text" id="book-address" class="input" placeholder="Pickup Address" />
+          <button onclick="uploadBook()" class="btn bg-blue-500 hover:bg-blue-600">Upload Book</button>
+        </div>
+        <div class="mt-6">
+          <h2 class="text-xl font-bold mb-2">📬 Requests Received</h2>
+          <div id="donor-requests" class="space-y-4"></div>
+        </div>
+      </div>
+
+      <div id="collector-panel" class="role-panel hidden">
+        <h2 class="text-xl font-bold mb-2">📚 Available Books</h2>
+        <input type="text" id="search-box" onkeyup="renderBooks()" class="input mb-4" placeholder="Search by title or author" />
+        <div id="book-list" class="space-y-4"></div>
+      </div>
+    </div>
   </div>
 
-  <div id="app" style="display: none;">
-    <p>Welcome, <span id="user-name"></span> | <button onclick="signOut()">Sign Out</button></p>
-
-    <div id="role-select">
-      <p>Select your role: 
-        <button onclick="setRole('donor')">Donor</button>
-        <button onclick="setRole('collector')">Collector</button>
-      </p>
-    </div>
-
-    <div id="donor-panel" style="display: none;">
-      <h3>Upload a Book</h3>
-      <input type="text" id="book-title" placeholder="Book Title" />
-      <input type="text" id="book-author" placeholder="Author" />
-      <input type="text" id="book-address" placeholder="Pickup Address" />
-      <button onclick="uploadBook()">Upload</button>
-    </div>
-
-    <div id="search-panel">
-      <h3>Search Books</h3>
-      <input type="text" id="search-box" onkeyup="searchBooks()" placeholder="Search by title or author" />
-      <ul id="book-list"></ul>
-    </div>
-  </div>
+  <style>
+    .input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+    }
+    .tab-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: #e2e8f0;
+      font-weight: 500;
+    }
+    .tab-btn.active {
+      background: #3b82f6;
+      color: white;
+    }
+  </style>
 
   <script src="app.js"></script>
 </body>
