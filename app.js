@@ -47,13 +47,24 @@ function renderBooks() {
   list.innerHTML = '';
   books.forEach((book, index) => {
     const li = document.createElement('li');
-    li.innerHTML = `<b>${book.title}</b> by ${book.author} - 📍 ${book.address}`;
+    li.className = 'bg-white shadow p-4 rounded-lg mb-4';
+    li.innerHTML = `
+      <h3 class="text-lg font-bold">${book.title}</h3>
+      <p class="text-gray-700">Author: ${book.author}</p>
+      <p class="text-gray-600">📍 ${book.address}</p>
+    `;
     if (userRole === 'collector') {
-      li.innerHTML += ` <button onclick="requestBook(${index})">Request Pickup</button>`;
+      li.innerHTML += `
+        <button class="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          onclick="requestBook(${index})">
+          Request Book
+        </button>
+      `;
     }
     list.appendChild(li);
   });
 }
+
 
 function searchBooks() {
   const query = document.getElementById('search-box').value.toLowerCase();
